@@ -1,0 +1,19 @@
+<div ng-controller="test2Controller">
+	<h1>Test2</h1>
+	<input type="text" ng-model="nombre">
+		{{ nombre }}
+	<input type="button" ng-click="saludo()" value ="Saludo">
+	<table>
+		<tr>
+			<td>last name</td>
+			<td>first name</td>
+		</tr>
+		<tr ng-repeat="d in personas | filter: nombre">
+			<td>{{ d.last_name }}</td>
+			<td>{{ d.first_name }}</td>
+		</tr>
+	</table>
+
+
+</div>
+<button onclick="hola()">hola</button>

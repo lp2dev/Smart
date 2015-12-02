@@ -1,0 +1,22 @@
+
+<div ng-controller="naturalPersonController">
+	<input type="text" ng-model="naturalperson.last_name">
+	<input type="text" ng-model="naturalperson.first_name">
+
+	<input type="button" ng-click="save()" value ="Save">
+	{{naturalperson.id}}
+	<table>
+		<tr>
+			<td>last name</td>
+			<td>first name</td>
+			<td>Edit</td>
+		</tr>
+		<tr ng-repeat="d in np_list">
+			<td>{{ d.last_name }}</td>
+			<td>{{ d.first_name }}</td>
+			<td> <a href="" ng-click="sel(d)">Edit</a></td>
+			<td> <a href="" ng-click="delete(d)">x</a></td>
+		</tr>
+	</table>
+</div>
+

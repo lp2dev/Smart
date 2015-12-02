@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular</title>
+<link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.css">
+
+</head>
+<body layout="column">
+	<md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <a href="#test">Ir a test</a> | 
+	<a href="#np">Personas</a>
+
+          
+        
+      </div>
+    </md-toolbar>
+
+	
+	
+	<div ng-view></div>
+
+	<script src= "static/angular.js"></script>
+	<script src= "static/angular-route.js"></script>
+
+	
+	<script src= "node_modules/angular-animate/angular-animate.js"></script>
+	<script src= "node_modules/angular-aria/angular-aria.js"></script>
+	<script src= "node_modules/angular-material/angular-material.js"></script>
+
+	<script src= "app/app.js"></script>
+	<script src= "app/controllers/testController.js"></script>
+	<script src= "app/controllers/naturalPersonController.js"></script>
+	<script src= "app/services/naturalPersonService.js"></script>
+
+	<script src= "app/controllers/cicloController.js"></script>
+	<script src= "app/services/cicloService.js"></script>
+
+
+	
+</body>
+</html>
+
+<md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
+  <ng-md-icon icon="add"></ng-md-icon>
+</md-button>

@@ -1,0 +1,31 @@
+﻿<h1></h1>
+<h1>
+<md-content class="md-padding">
+<form method="post">
+
+    <div layout layout-sm="column">
+        <md-input-container flex>
+        <label>Login</label>
+        <input ng-model="loginData.userName" required autofocus>
+    </md-input-container>
+    </div>
+    <div layout layout-sm="column">
+    <md-input-container flex>
+    <label>Password</label>
+    <input type="password" ng-model="loginData.password" required>
+</md-input-container>
+</div>
+<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+    <md-button class="md-raised md-primary" type="submit" ng-click="login()">Login</md-button>
+</section>
+
+
+<div ng-hide="message == ''" class="alert alert-danger">
+    {{message}}
+</div>
+
+</form>
+</md-content>
+<h1></h1>
+</h1>
+

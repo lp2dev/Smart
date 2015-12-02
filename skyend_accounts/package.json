@@ -1,0 +1,35 @@
+{
+  "name": "skyend_web",
+  "version": "1.0.0",
+  "description": "mi backend",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "angular": "^1.4.7",
+    "angular-animate": "^1.4.7",
+    "angular-aria": "^1.4.7",
+    "angular-local-storage": "^0.2.2",
+    "angular-material": "^0.11.4",
+    "angular-material-icons": "^0.6.0",
+    "angular-messages": "^1.4.7",
+    "angular-resource": "^1.4.7",
+    "angular-route": "^1.4.7",
+    "angular-ui-router": "^0.2.15",
+    "angular-toastr": "^1.5.0",
+    "angularytics": "^0.4.0",
+    "gulp": "^3.9.0",
+    "gulp-connect": "^2.2.0",
+    "oclazyload": "^1.0.6",
+    "angular-loading-bar": "^0.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "runserver"
+  },
+  "keywords": [
+    "angular",
+    "material",
+    "full"
+  ],
+  "author": "lp22015-2",
+  "license": "ISC"
+}

@@ -1,0 +1,80 @@
+
+<div ng-controller="contratoController">
+  <form >
+  <input type="text" ng-model="contrato.Documento">
+  <input type="text" ng-model="contrato.numero">
+  <input type="text" ng-model="contrato.fecha_inicio">
+  <input type="text" ng-model="contrato.fecha_fin">
+ 
+  
+
+  <input type="button" ng-click="save()" value ="Save">
+  {{contrato.id}}
+  </form>
+
+
+
+
+  <md-toolbar>
+      <div class="md-toolbar-tools">
+      <md-button ng-click="registro('')" class="md-icon-button md-primary md-hue-1" aria-label="add">
+      <md-icon md-svg-icon="icons/ic_add_24px.svg"></md-icon>
+      </md-button>
+
+      <md-button ng-click="list(page,page_size,field,order,query)" class="md-icon-button md-primary md-hue-1" aria-label="listar"><md-icon md-svg-icon="icons/ic_list_24px.svg"></md-icon></md-button>
+
+      <md-button ng-click="list(page,options.count,field,order,query)" class="md-icon-button md-primary md-hue-1" aria-label="listar todo"><md-icon md-svg-icon="icons/ic_reorder_24px.svg"></md-icon> </md-button>
+
+      <md-button ng-click="destroy($event)" ng-if="milistacheck!=0" class="md-icon-button md-primary md-hue-1" aria-label="eliminar"><md-icon md-svg-icon="icons/ic_clear_24px.svg"></md-icon></md-button>
+
+      <span flex></span>
+      <md-input-container md-no-float>
+      <input placeholder="buscar" ng-model="query" ng-keyup="buscar(page, page_size,field, order,query)" >
+      </md-input-container>
+      </div>
+  </md-toolbar>
+
+
+  <table upeu-table>
+  <thead>
+    <tr>
+      <td>numero</td>
+      <td>fecha inicio</td>
+      <td>fecha fin</td>
+      <td>documento</td>
+      <td>Edit</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="d in contrato_list">
+      <td>{{ d.numero }}</td>
+      <td>{{ d.fecha inicio }}</td>
+      <td>{{ d.fecha fin }}</td>
+      <td>{{ d.documento }}</td>
+      <td>{{ d.documentos.id }}</td
+      <td> <a href="" ng-click="sel(d)">Modificar</a></td>
+      <td> <a href="" ng-click="delete(d)">Eliminar</a></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="10">
+
+      <upeu-pagination
+page="options.page"
+pages="options.pages"
+next="options.next"
+previous="options.previous"
+rango="options.range"
+activado="myactive"
+accion="list(page)">
+</upeu-pagination>
+
+
+
+      </td>
+    </tr>
+  </tfoot>
+  </table>
+</div>
+

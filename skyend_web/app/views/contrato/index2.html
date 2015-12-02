@@ -1,0 +1,131 @@
+
+<div ng-controller="contratoController">
+	
+	<md-toolbar>
+    <a ng-href="#/" class="docs-logo">
+            <img src="img/loco.png" alt=""></a>
+
+      <div class="md-toolbar-tools">
+
+      <center>
+        <section layout="row" layout-sm="column" layout-align="left left" layout-wrap>
+         <span flex>
+        <md-button class="md-fab md-primary md-hue-2" href="cabesera/cabecera.html" aria-label="Profile">
+            <md-icon md-svg-src="img/icons/ic_people_24px.svg"></md-icon>
+        </md-button>
+        </span>
+        <md-button class="md-fab md-mini md-primary" href="nexus/amigos.html" aria-label="Use Android">
+          <md-icon md-svg-src="img/icons/android.svg" style="color: greenyellow;"></md-icon>
+        </md-button>
+    </center>
+      <md-button ng-click="new()" class="md-icon-button md-primary md-hue-1" aria-label="add">
+      <md-tooltip md-autohide>Nuevo</md-tooltip>
+      <md-icon md-svg-icon="icons/ic_add_24px.svg"></md-icon>
+      </md-button>
+
+   
+      <md-button ng-click="listAll(page,options.count)" class="md-icon-button md-primary md-hue-1" aria-label="listar todo">
+      <md-tooltip md-autohide>Listar todo</md-tooltip>
+      <md-icon md-svg-icon="icons/ic_reorder_24px.svg"></md-icon> 
+  </md-button>
+
+      
+
+      <span flex></span>
+      <md-input-container md-no-float>
+      <input placeholder="buscar" ng-model="query" ng-keyup="list(page)" >
+      </md-input-container>
+      <md-button href="../skyend_accounts/#/login" type="button"><h5>Salir</h5></md-button>
+      <md-datepicker ng-model="user.submissionDate"></md-datepicker>
+                    <div>
+          <md-button ng-click="toggleRight()"
+            ng-hide="isOpenRight()"
+            class="md-primary">
+            Vista Previa
+          </md-button>
+        </div>
+      </div>
+  
+  </md-toolbar>
+
+
+	<table mi-table>
+	<thead>
+      <div class="bottom-sheet-demo inset" layout="row" layout-sm="column" layout-align="center" >
+    <md-button flex="50" class="md-primary md-raised" ng-click="showListBottomSheet($event)">Lista de todo los Contactos</md-button>
+    <md-button flex="50" class="md-primary md-raised" ng-click="showGridBottomSheet($event)">Limpiar</md-button>
+  </div>
+    <div ng-if="alert">
+    <br/>
+    <b layout="row" layout-align="center center" class="md-padding">
+      {{alert}}
+    </b>
+  </div>
+		<tr>
+      <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+			<td><h4>#</h4></td>
+			<td><h4>Numero</h4></td>
+      		<td><h4>Fecha Inicio</h4></td>
+      		<td><h4>Fecha Fin<h4></td>
+      		<td><h4>Documento</h4></td>
+          <td><h4>Documento_id</h4></td>
+			<td colspan='2' align='center'><h4>Acciones</h4></td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="d in contrato_list">
+			 <td><md-checkbox> {{ d.id }} </md-checkbox></td>
+			<td>{{ d.numero }}</td>
+     		<td>{{ d.fecha_inicio }}</td>
+      		<td>{{ d.fecha_fin }}</td>
+      		<td>{{ d.documento}}</td>
+          <td>{{ d.documentos}}</td>
+       <td> <a> <md-button href="" type="button"  ng-click="get(d)"><h5>Modificar</h5></md-button> </a></td>
+       <td> <a> <md-button href="" type="button"  ng-click="delete(d)" value ="Eliminar"><h5>Eliminar</h5></md-button></a></td>
+		</tr>
+	</tbody>
+	<tfoot>
+    <tr>
+      <td colspan="10">
+
+      <mi-pagination
+page="options.page"
+pages="options.pages"
+next="options.next"
+previous="options.previous"
+rango="options.range"
+activado="myactive"
+accion="list(page)">
+</mi-pagination>
+
+
+
+      </td>
+    </tr>
+  </tfoot>
+	</table>
+
+<div ng-controller="contratoController" layout="column" style="height:50px;" ng-cloak>
+  <section>
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+      <md-toolbar class="md-theme-light">
+      <a ng-href="#/" class="docs-logo">
+            <img src="img/teme.png" alt=""></a>
+        <h1 class="md-toolbar-tools">Sidenav Right</h1>
+      </md-toolbar>
+      <md-content ng-controller="RightCtrl">
+        <form>
+          <md-input-container>
+            <label for="testInput">Test input</label>
+            <input type="text" id="testInput"
+                   ng-model="data" md-autofocus>
+          </md-input-container>
+        </form>
+        <md-button ng-click="close()" class="md-primary">
+          Close Sidenav Right
+        </md-button>
+      </md-content>
+    </md-sidenav>
+  </section>
+</div></div>
+

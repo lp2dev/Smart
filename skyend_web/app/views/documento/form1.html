@@ -1,0 +1,77 @@
+<md-dialog aria-label="Form1">
+    <a ng-href="#/" class="docs-logo">
+            <img src="img/teme.png" alt=""></a>
+<form name='myform' >
+	 <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+	      <md-button ng-click="new()" class="md-icon-button md-primary md-hue-1" aria-label="add">
+      <md-tooltip md-autohide>Nuevo</md-tooltip>
+      <md-icon md-svg-icon="icons/ic_add_24px.svg"></md-icon>
+      </md-button>
+      <div class="bottom-sheet-demo inset" layout="row" layout-sm="column" layout-align="center" >
+          <md-button flex="50" class="md-primary md-raised" ng-click="showListBottomSheet($event)">Clik Aqui</md-button>
+      </div>
+
+<md-dialog-content>
+<md-content layout-padding>
+
+<h3>registro {{documento.id}}</h3>
+<div>
+<md-input-container flex>
+<label>Descripcion :</label>
+<input ng-model="documento.descripcion" required>
+</md-input-container>
+<md-input-container flex>
+<label>Nombre :</label>
+<input ng-model="documento.nombre" required>
+</md-input-container>
+
+<md-input-container flex>
+<md-checkbox ng-model="documento.estado" aria-label="Estado">
+Estado :
+</md-checkbox>
+</md-input-container>
+</div>
+</md-content>
+
+</md-dialog-content>
+<div class="md-actions" layout="row">
+<span flex></span>
+<md-button type="reset" ng-click="cancel()">
+cancelar
+</md-button>
+<md-button type="submit"  ng-click="save()" ng-disabled="!myform.$valid">
+guardar
+</md-button>
+</div>
+</form>
+</md-dialog>
+
+
+<div ng-controller="documentoController as ctrl" layout="column" ng-cloak>
+  <md-content class="md-padding">
+    <form ng-submit="$event.preventDefault()">
+      <center>
+      <p><code>Buscar Aqui</code></p></center>
+      <md-autocomplete
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Busque su Nombre">
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+        </md-item-template>
+        <md-not-found>
+          No states matching "{{ctrl.searchText}}" were found.
+          <a ng-click="ctrl.newState(ctrl.searchText)">Create a new one!</a>
+        </md-not-found>
+      </md-autocomplete>
+      <br/>
+    </form>
+  </md-content>
+</div>

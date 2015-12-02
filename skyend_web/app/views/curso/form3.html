@@ -1,0 +1,99 @@
+<md-dialog aria-label="Form3">
+<a ng-href="#/" class="docs-logo">
+            <img src="img/teme.png" alt=""></a>
+<form name='myform' >
+<md-dialog-content>
+<md-content layout-padding>
+
+<h3>registro {{curso.id}}</h3>
+
+<div>
+<md-input-container flex>
+<label>numero :</label>
+<input ng-model="curso.numero" required>
+</md-input-container>
+<md-input-container flex>
+<label>nombre :</label>
+<input ng-model="curso.nombre" required>
+</md-input-container>
+<md-input-container flex>
+<label>fecha inicio :</label>
+<input ng-model="curso.fecha_inicio" required>
+</md-input-container>
+<md-input-container flex>
+<label>fecha fin :</label>
+<input ng-model="curso.fecha_fin" required>
+</md-input-container>
+<md-input-container flex>
+<label>codigo :</label>
+<input ng-model="curso.codigo" required>
+</md-input-container>
+      <div class="bottom-sheet-demo inset" layout="row" layout-sm="column" layout-align="center" >
+          <md-button flex="50" class="md-primary md-raised" ng-click="showListBottomSheet($event)">Clik Aqui</md-button>
+      </div>
+
+<md-input-container flex>
+<select ng-model="curso.contrato"
+	ng-options="value.id as value.numero for value in contrato_list">
+	<option>--</option>
+</select>{{curso.contrato.id}}
+
+</md-input-container>
+
+
+</md-input-container>
+
+<md-input-container flex>
+<md-checkbox ng-model="contrato.estado" aria-label="Estado">
+Estado :
+</md-checkbox>
+</md-input-container>
+</div>
+</md-content>
+
+</md-dialog-content>
+<div class="md-actions" layout="row">
+<span flex></span>
+<md-button type="reset" ng-click="cancel()">
+cancelar
+</md-button>
+<md-button type="submit"  ng-click="save()" ng-disabled="!myform.$valid">
+guardar
+</md-button>
+</div>
+</form>
+</md-dialog>
+
+<div ng-controller="contratoController as ctrl" layout="column" ng-cloak>
+  <md-content class="md-padding autocomplete" layout="column">
+    <md-contact-chips
+        ng-model="ctrl.contacts"
+        md-contacts="ctrl.querySearch($query)"
+        md-contact-name="name"
+        md-contact-image="image"
+        md-contact-email="email"
+        md-require-match="true"
+        md-highlight-flags="i"
+        filter-selected="ctrl.filterSelected"
+        placeholder="To">
+    </md-contact-chips>
+    <md-list class="fixedRows">
+      <md-subheader class="md-no-sticky">Contacts</md-subheader>
+      <md-list-item class="md-2-line contact-item" ng-repeat="(index, contact) in ctrl.allContacts"
+          ng-if="ctrl.contacts.indexOf(contact) < 0">
+        <img ng-src="{{contact.image}}" class="md-avatar" alt="{{contact.name}}" />
+        <div class="md-list-item-text compact">
+          <h3>{{contact.name}}</h3>
+          <p>{{contact.email}}</p>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-2-line contact-item selected" ng-repeat="(index, contact) in ctrl.contacts">
+        <img ng-src="{{contact.image}}" class="md-avatar" alt="{{contact.name}}" />
+        <div class="md-list-item-text compact">
+          <h3>{{contact.name}}</h3>
+          <p>{{contact.email}}</p>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-content>
+</div>

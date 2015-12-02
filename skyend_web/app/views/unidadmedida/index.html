@@ -1,0 +1,66 @@
+
+<div ng-controller="unidadMedidaController">
+	
+	<md-toolbar>
+      <div class="md-toolbar-tools">
+      <md-button ng-click="new()" class="md-icon-button md-primary md-hue-1" aria-label="add">
+      <md-tooltip md-autohide>Nuevo</md-tooltip>
+      <md-icon md-svg-icon="icons/ic_add_24px.svg"></md-icon>
+      </md-button>
+
+   
+      <md-button ng-click="listAll(page,options.count)" class="md-icon-button md-primary md-hue-1" aria-label="listar todo">
+      <md-tooltip md-autohide>Listar todo</md-tooltip>
+      <md-icon md-svg-icon="icons/ic_reorder_24px.svg"></md-icon> 
+  </md-button>
+
+      
+
+      <span flex></span>
+      <md-input-container md-no-float>
+      <input placeholder="buscar" ng-model="query" ng-keyup="list(page)" >
+      </md-input-container>
+      </div>
+  </md-toolbar>
+
+
+	<table mi-table>
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>codigo</td>
+			<td>nombre</td>
+			<td colspan='2' align='center'>acciones</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="d in d_list">
+			<td>{{ d.id }}</td>
+			<td>{{ d.codigo }}</td>
+			<td>{{ d.nombre }}</td>
+			<td> <a href="" ng-click="get(d)">Edit</a></td>
+			<td> <a href="" ng-click="delete(d)">x</a></td>
+		</tr>
+	</tbody>
+	<tfoot>
+    <tr>
+      <td colspan="10">
+
+      <mi-pagination
+page="options.page"
+pages="options.pages"
+next="options.next"
+previous="options.previous"
+rango="options.range"
+activado="myactive"
+accion="list(page)">
+</mi-pagination>
+
+
+
+      </td>
+    </tr>
+  </tfoot>
+	</table>
+</div>
+

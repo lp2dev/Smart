@@ -1,0 +1,36 @@
+<md-dialog aria-label="Form">
+<form name='myform' >
+<md-dialog-content>
+<md-content layout-padding>
+
+<h3>registro {{unidadmedida.id}}</h3>
+<div>
+<md-input-container flex>
+<label>Codigo :</label>
+<input ng-model="unidadmedida.codigo" required>
+</md-input-container>
+<md-input-container flex>
+<label>Nombre :</label>
+<input ng-model="unidadmedida.nombre" required>
+</md-input-container>
+
+<md-input-container flex>
+<md-checkbox ng-model="unidadmedida.estado" aria-label="Estado">
+Estado :
+</md-checkbox>
+</md-input-container>
+</div>
+</md-content>
+
+</md-dialog-content>
+<div class="md-actions" layout="row">
+<span flex></span>
+<md-button type="reset" ng-click="cancel()">
+cancelar
+</md-button>
+<md-button type="submit"  ng-click="save()" ng-disabled="!myform.$valid">
+guardar
+</md-button>
+</div>
+</form>
+</md-dialog>

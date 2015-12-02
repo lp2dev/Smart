@@ -1,0 +1,73 @@
+
+<div ng-controller="unidadMedidaController">
+	<form >
+	<input type="text" ng-model="unidadmedida.codigo">
+	<input type="text" ng-model="unidadmedida.nombre">
+
+	
+
+	<input type="button" ng-click="save()" value ="Save">
+	{{unidadmedida.id}}
+	</form>
+
+
+
+
+	<md-toolbar>
+      <div class="md-toolbar-tools">
+      <md-button ng-click="registro('')" class="md-icon-button md-primary md-hue-1" aria-label="add">
+      <md-icon md-svg-icon="icons/ic_add_24px.svg"></md-icon>
+      </md-button>
+
+      <md-button ng-click="list(page,page_size,field,order,query)" class="md-icon-button md-primary md-hue-1" aria-label="listar"><md-icon md-svg-icon="icons/ic_list_24px.svg"></md-icon></md-button>
+
+      <md-button ng-click="list(page,options.count,field,order,query)" class="md-icon-button md-primary md-hue-1" aria-label="listar todo"><md-icon md-svg-icon="icons/ic_reorder_24px.svg"></md-icon> </md-button>
+
+      <md-button ng-click="destroy($event)" ng-if="milistacheck!=0" class="md-icon-button md-primary md-hue-1" aria-label="eliminar"><md-icon md-svg-icon="icons/ic_clear_24px.svg"></md-icon></md-button>
+
+      <span flex></span>
+      <md-input-container md-no-float>
+      <input placeholder="buscar" ng-model="query" ng-keyup="buscar(page, page_size,field, order,query)" >
+      </md-input-container>
+      </div>
+  </md-toolbar>
+
+
+	<table upeu-table>
+	<thead>
+		<tr>
+			<td>codigo</td>
+			<td>nombre</td>
+			<td>Edit</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="d in np_list">
+			<td>{{ d.codigo }}</td>
+			<td>{{ d.nombre }}</td>
+			<td> <a href="" ng-click="sel(d)">Edit</a></td>
+			<td> <a href="" ng-click="delete(d)">x</a></td>
+		</tr>
+	</tbody>
+	<tfoot>
+    <tr>
+      <td colspan="10">
+
+      <upeu-pagination
+page="options.page"
+pages="options.pages"
+next="options.next"
+previous="options.previous"
+rango="options.range"
+activado="myactive"
+accion="list(page)">
+</upeu-pagination>
+
+
+
+      </td>
+    </tr>
+  </tfoot>
+	</table>
+</div>
+

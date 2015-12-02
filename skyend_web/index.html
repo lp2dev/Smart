@@ -1,0 +1,255 @@
+<!doctype html>
+<html ng-app="backendApp" ng-controller="appController" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.css">
+
+  <title ng-bind="'PROYECTO1 - ' + menu.currentSection.name +
+  (menu.currentSection === menu.currentPage ? '' : ' > ' + menu.currentPage.name)">
+  Portal 
+</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<meta name="viewport" content="initial-scale=1" />
+
+<link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/table.css">
+</head>
+<body layout="row" >
+
+  <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+  md-component-id="left"
+  md-is-locked-open="$mdMedia('gt-sm')">
+
+  <md-toolbar class="md-hue-2">
+  
+  <div layout="column" class="md-toolbar-tools-bottom inset">
+             <md-fab-trigger>
+      </md-fab-trigger>
+    <a ng-href="#/" class="docs-logo">
+           <a ng-href="#/" class="docs-logo">
+        <img src="img/cristian.jpg" alt="20">
+          </a>
+    <a ng-href="#/" class="docs-logo">
+      <h1 class="docs-logotype md-heading">CRISTIANH</h1>
+    </a>
+  </div>
+</md-toolbar>
+
+<md-content flex role="navigation">
+<ul class="docs-menu">
+  <li ng-repeat="section in menu.sections" class="parent-list-item {{section.className || ''}}" ng-class="{'parentActive' : isSectionSelected(section)}">
+    <h2 class="menu-heading md-subhead" ng-if="section.type === 'heading'" id="heading_{{ section.name | nospace }}">
+      {{section.name}}
+    </h2>
+    <menu-link section="section" ng-if="section.type === 'link'"></menu-link>
+
+    <menu-toggle section="section" ng-if="section.type === 'toggle'"></menu-toggle>
+
+    <ul ng-if="section.children" class="menu-nested-list">
+      <li ng-repeat="child in section.children" ng-class="{'childActive' : isSectionSelected(child)}">
+        <menu-link section="child" ng-if="child.type === 'link'"></menu-link>
+
+        <menu-toggle section="child" ng-if="child.type === 'toggle'"></menu-toggle>
+      </li>
+    </ul>
+  </li>
+</ul>
+</md-content>
+
+
+
+
+
+
+
+</md-sidenav>
+
+
+
+
+<div layout="column" tabIndex="-1" role="mainxx" flex>
+
+
+  
+
+<md-toolbar ng-show="!showSearch" class="md-whiteframe-glow-z1">
+<div class="md-toolbar-tools">
+  <md-button class="md-icon-button docs-toolbar-tools" ng-click="openMenu()" hide-gt-sm aria-label="Toggle Menu">
+  <ng-md-icon icon="menu"></ng-md-icon>
+</md-button>
+<h2 class="md-toolbar-item md-breadcrumb md-headline">
+  <span ng-if="menu.currentPage.name !== menu.currentSection.name">
+    <span hide-sm hide-md>{{menu.currentSection.name}}</span>
+    <span class="docs-menu-separator-icon" hide-sm hide-md style="transform: translate3d(0, 1px, 0)">
+      <span class="md-visually-hidden">-</span>
+      <md-icon
+      aria-hidden="true"
+      md-svg-src="img/icons/ic_chevron_right_24px.svg"
+      style="transform:translateY(-2px)"></md-icon>
+    </span>
+  </span>
+  <span class="md-breadcrumb-page">{{menu.currentPage | humanizeDoc}}</span>
+</h2>
+
+<span flex></span> <!-- use up the empty space -->
+
+
+<div class="md-toolbar-item docs-tools" layout="row">
+
+
+  <md-button class="md-icon-button"
+  aria-label="Install with Bower"
+  ng-if="!currentComponent.docs.length"
+  target="_blank"
+  ng-href="https://github.com/angular/bower-material">
+  <md-tooltip md-autohide>Install with Bower</md-tooltip>
+  <md-icon md-svg-src="img/icons/bower-logo.svg"></md-icon>
+</md-button>
+<md-button class="md-icon-button"
+aria-label="Install with NPM"
+ng-if="!currentComponent.docs.length"
+target="_blank"
+ng-href="https://www.npmjs.com/package/angular-material">
+<md-tooltip md-autohide>Install with NPM</md-tooltip>
+<md-icon md-svg-src="img/icons/npm-logo.svg" style="transform: scale(1.3)"></md-icon>
+</md-button>
+<md-button class="md-icon-button"
+aria-label="Salir"
+ng-click="logOut()" 
+>
+<md-tooltip md-autohide>Salir</md-tooltip>
+<ng-md-icon icon="account_box"></ng-md-icon>
+</md-button>
+
+<md-button class="md-icon-button"
+aria-label="Search"
+ng-click="showSearch = !showSearch">
+<md-tooltip md-autohide>Search</md-tooltip>
+<ng-md-icon icon="search"></ng-md-icon>
+</md-button>
+
+<md-button class="md-icon-button"
+aria-label="Open Settings"
+ng-click="showListBottomSheet($event)">
+<md-tooltip md-autohide>Open Settings</md-tooltip>
+<ng-md-icon icon="more_vert"></ng-md-icon>
+</md-button>
+
+
+</div>
+
+
+</div>
+
+</md-toolbar>
+
+<md-toolbar class="md-hue-1" ng-show="showSearch">
+<div class="md-toolbar-tools">
+  <md-button class="md-icon-button"
+  aria-label="Back"
+  ng-click="showSearch = !showSearch">
+  <md-tooltip md-autohide>Back</md-tooltip>
+  <ng-md-icon icon="arrow_back"></ng-md-icon>
+</md-button>
+
+
+<md-input-container md-theme="input" flex>
+<label>&nbsp;</label>
+<input ng-model="search.who" placeholder="enter search">
+</md-input-container>
+
+
+<div class="md-toolbar-item docs-tools" layout="row">
+
+  <md-button class="md-icon-button"
+  aria-label="Search"
+  ng-click="showSearch = !showSearch">
+  <md-tooltip md-autohide>Search</md-tooltip>
+  <ng-md-icon icon="search"></ng-md-icon>
+</md-button>
+
+<md-button class="md-icon-button"
+aria-label="Open Settings"
+ng-click="showListBottomSheet($event)">
+<md-tooltip md-autohide>Open Settings</md-tooltip>
+<ng-md-icon icon="more_vert"></ng-md-icon>
+</md-button>
+
+
+</div>
+
+</div>
+
+</md-toolbar>
+
+
+
+<md-content ui-view md-scroll-y flex layout-padding></md-content>
+
+</div>
+
+
+<script src="node_modules/angular/angular.min.js"></script>
+<script src="node_modules/angular-animate/angular-animate.min.js"></script>
+
+<script src="node_modules/angular-aria/angular-aria.min.js"></script>
+<script src="node_modules/angular-messages/angular-messages.min.js"></script>
+<script src="node_modules/angular-resource/angular-resource.min.js"></script>
+
+<!-- Vendor -->
+<script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+
+<script src= "node_modules/angular-material/angular-material.js"></script>
+<script src= "node_modules/angularytics/dist/angularytics.min.js"></script>
+
+<script src="node_modules/angular-material-icons/angular-material-icons.min.js"></script> 
+<!-- lazyload -->
+<script src="node_modules/oclazyload/dist/ocLazyLoad.js"></script>
+<script src="node_modules/angular-local-storage/dist/angular-local-storage.js"></script>
+<script type="text/javascript" src="node_modules/angular-toastr/dist/angular-toastr.tpls.js"></script>
+
+
+<script src= "app/app.js"></script>
+<script src= "app/config.js"></script>
+<script src= "app/config.router.js"></script>
+<script src= "app/services/authInterceptorService.js?v=2"></script>
+<script src="app/services/authService.js?v=2"></script>
+
+<script src= "app/directives/menu.js"></script>
+<script src= "app/directives/pagination.js"></script>
+<script src= "app/filters/menu.js"></script>
+
+<script src= "app/controllers/appController.js"></script>
+<script src= "app/controllers/testController.js"></script>
+<script src= "app/controllers/test2Controller.js"></script>
+<script src= "app/controllers/naturalPersonController.js"></script>
+<script src= "app/services/naturalPersonService.js"></script>
+
+<script src= "app/controllers/contratoController.js"></script>
+<!--<script src= "app/services/contratoService.js"></script>-->
+
+<script src= "app/controllers/documentoController.js"></script>
+<!-- <script src= "app/services/documentoService.js"></script>  -->
+
+<script src= "app/controllers/cursoController.js"></script>
+<!-- <script src= "app/services/cursoService.js"></script>  -->
+
+<script src= "app/services/menuService.js"></script>
+
+<script src= "app/controllers/unidadMedidaController.js"></script>
+<script src= "app/services/app.api.js"></script> 
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','node_modules/angularytics/dist/angularytics.js','ga');
+
+ga('create', 'UA-8594346-14', 'auto');
+ga('send', 'pageview');
+</script>
+
+</body>
+</html>
